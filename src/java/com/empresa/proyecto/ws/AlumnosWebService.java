@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package com.empresa.proyecto.ws;
+import com.empresa.poyecto.bean.Alumnos;
+import com.empresa.proyecto.service.AlumnoService;
+import java.util.List;
 
 import javax.jws.WebService;
 import javax.jws.WebMethod;
@@ -16,6 +19,8 @@ import javax.jws.WebParam;
 @WebService(serviceName = "AlumnosWebService")
 public class AlumnosWebService {
 
+	AlumnoService alumnoService = new AlumnoService();
+
 	/**
 	 * This is a sample web service operation
 	 */
@@ -23,4 +28,17 @@ public class AlumnosWebService {
 	public String hello(@WebParam(name = "name") String txt) {
 		return "Hello " + txt + " !";
 	}
+
+	@WebMethod(operationName = "crearAlumno")
+	public String crearAlumno(@WebParam(name = "nombreAlumno") String nombreAlumno,
+		@WebParam(name="Edad") int Edad, @WebParam(name="gradoEscolar") String gradoEscolar){
+		return alumnoService.crearAlumno(nombreAlumno, Edad, gradoEscolar);
+	}
+
+	@WebMethod(operationName = "listarAlumno")
+	public List<Alumnos> listarAlumno() {
+		return alumnoService.listarAlumnos();
+	}
+
+
 }
