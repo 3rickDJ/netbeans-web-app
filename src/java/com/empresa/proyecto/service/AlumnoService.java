@@ -6,8 +6,11 @@
 package com.empresa.proyecto.service;
 
 import com.empresa.poyecto.bean.Alumnos;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,8 +19,10 @@ import java.util.List;
 public class AlumnoService {
 
 	List<Alumnos> ListaAlumnos = new ArrayList<>();
+	DBConn db = new DBConn();
 
-	public AlumnoService() {}
+	public AlumnoService() {
+	}
 	public String crearAlumno(String nombre, int edad, String gradoEscolar) {
 		Alumnos a = new Alumnos();
 		a.setId(ListaAlumnos.size() + 1);
@@ -30,5 +35,9 @@ public class AlumnoService {
 
 	public List<Alumnos> listarAlumnos(){
 		return ListaAlumnos;
+	}
+
+	public Boolean findUser(String name, String password) {
+		return db.checkIfExists(name, password);
 	}
 }

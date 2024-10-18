@@ -40,5 +40,16 @@ public class AlumnosWebService {
 		return alumnoService.listarAlumnos();
 	}
 
+	/**
+	 * Web service operation
+	 * @param usuario
+	 * @param contrasena
+	 * @return 
+	 */
+	@WebMethod(operationName = "encontrarAlumno")
+	public Boolean encontrarAlumno(@WebParam(name = "usuario") String usuario, @WebParam(name = "contrasena") String contrasena) {
+		return alumnoService.findUser(usuario, contrasena);
+	}
+
 
 }
